@@ -16,6 +16,7 @@ public class ViewCartController extends BaseController{
      */
     public void checkAvailabilityOfProduct() throws SQLException{
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        // common coupling vì truy cập thuộc tính static là cartInstance của lớp SessionInfomation
     }
 
     /**
@@ -24,6 +25,7 @@ public class ViewCartController extends BaseController{
      */
     public int getCartSubtotal(){
         int subtotal = SessionInformation.cartInstance.calSubtotal();
+        // common coupling vì truy cập thuộc tính static là cartInstance của lớp SessionInfomation
         return subtotal;
     }
 

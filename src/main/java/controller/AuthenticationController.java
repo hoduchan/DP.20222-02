@@ -32,6 +32,7 @@ public class AuthenticationController extends BaseController {
     public User getMainUser() throws ExpiredSessionException {
         if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
             logout();
+            // common coupling vì truy cập thuộc tính static là mainUser, expiredTime của lớp SessionInfomation
             throw new ExpiredSessionException();
         } else return SessionInformation.mainUser.cloneInformation();
     }
@@ -42,6 +43,7 @@ public class AuthenticationController extends BaseController {
             if (Objects.isNull(user)) throw new FailLoginException();
             SessionInformation.mainUser = user;
             SessionInformation.expiredTime = LocalDateTime.now().plusHours(24);
+            // common coupling vì truy cập thuộc tính static là mainUser, expiredTime của lớp SessionInfomation
         } catch (SQLException ex) {
             throw new FailLoginException();
         }
@@ -50,6 +52,7 @@ public class AuthenticationController extends BaseController {
     public void logout() {
         SessionInformation.mainUser = null;
         SessionInformation.expiredTime = null;
+        // common coupling vì truy cập thuộc tính static là mainUser, expiredTime của lớp SessionInfomation
     }
 
     /**

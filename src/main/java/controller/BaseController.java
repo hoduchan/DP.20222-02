@@ -19,6 +19,7 @@ public class BaseController {
      */
     public CartItem checkMediaInCart(Media media){
         return SessionInformation.cartInstance.checkMediaInCart(media);
+        // common coupling vì truy cập thuộc tính static là cartInstance của lớp SessionInfomation
     }
 
     /**
@@ -27,5 +28,6 @@ public class BaseController {
      */
     public List getListCartMedia(){
         return SessionInformation.cartInstance.getListMedia();
+        // common coupling vì truy cập thuộc tính static là cartInstace của lớp SessionInfomation
     }
 }

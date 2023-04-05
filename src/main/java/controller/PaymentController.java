@@ -105,5 +105,6 @@ public class PaymentController extends BaseController {
 
 	public void emptyCart(){
         SessionInformation.cartInstance.emptyCart();
+		// common coupling vì truy cập thuộc tính static là cartInstance của lớp SessionInfomation
     }
 }

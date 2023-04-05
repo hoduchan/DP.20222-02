@@ -34,6 +34,7 @@ public class PlaceOrderController extends BaseController {
      */
     public void placeOrder() throws SQLException {
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        // common coupling vì truy cập thuộc tính static là cartInstance của lớp SessionInfomation
     }
 
     /**
