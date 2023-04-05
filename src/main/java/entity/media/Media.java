@@ -24,6 +24,7 @@ public class Media {
     protected int price; // the price which will be displayed on browser (eg: 500)
     protected int quantity;
     protected String type;
+    // content coupling vì có sử dụng trực tiếp imageURL trong class được kế thừa từ Media
     protected String imageURL;
     protected boolean rushSupported;
 
