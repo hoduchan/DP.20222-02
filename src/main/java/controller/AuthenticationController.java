@@ -44,8 +44,8 @@ public class AuthenticationController extends BaseController {
         try {
             User user = new UserDAO().authenticate(email, md5(password));
             if (Objects.isNull(user)) throw new FailLoginException();
-            SessionInformation.mainUser = user;
-            SessionInformation.expiredTime = LocalDateTime.now().plusHours(24);
+            SessionInformation.mainUser = user; /* content coupling: sử dụng trực tiếp mainUser của lớp SessionInformation*/
+            SessionInformation.expiredTime = LocalDateTime.now().plusHours(24); /* content coupling: sử dụng trực tiếp expiredTime của lớp SessionInformation*/
         } catch (SQLException ex) {
             throw new FailLoginException();
         }
@@ -54,10 +54,10 @@ public class AuthenticationController extends BaseController {
     /    common coupling vì hàm logout sử dụng chung global data từ class SessionInformation là mainUser va expiredTime
      */
     public void logout() {
-        SessionInformation.mainUser = null;
-        SessionInformation.expiredTime = null;
+        SessionInformation.mainUser = null; /* content coupling: sử dụng trực tiếp mainUser của lớp SessionInformation*/
+        SessionInformation.expiredTime = null; /* content coupling: sử dụng trực tiếp expiredTime của lớp SessionInformation*/
     }
-
+    /* content coupling: sử dụng trực tiếp mainUser, expiredTime của lớp SessionInformation*/
     /**
      * Return a {@link String String} that represents the cipher text
      * encrypted by md5 algorithm.
