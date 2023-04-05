@@ -33,7 +33,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     /*
-    /   common coupling vì hàm placeOrder sử dụng data global của class SessionInformation
+    /   common coupling vì hàm placeOrder sử dụng data global của class SessionInformation là cartInstance
      */
     public void placeOrder() throws SQLException {
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
@@ -45,7 +45,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     /*
-    /   common coupling vì hàm createOrder sử dụng data global của class SessionInformation
+    /   common coupling vì hàm createOrder sử dụng data global của class SessionInformation cartInstance
     */
     public Order createOrder() throws SQLException {
         return new Order(SessionInformation.cartInstance);
