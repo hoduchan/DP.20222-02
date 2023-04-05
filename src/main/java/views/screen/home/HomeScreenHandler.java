@@ -109,7 +109,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             e.printStackTrace();
         }
     }
-
     protected void setupFunctionality() throws Exception {
 
         aimsImage.setOnMouseClicked(e -> {
@@ -133,7 +132,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
     }
-
+    /*
+    /  common coupling vì phương thức show() sử dụng biến global của lớp    SessionInformation là cartInstance
+     */
     @Override
     public void show() {
         if (authenticationController.isAnonymousSession()) {
@@ -147,7 +148,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         numMediaInCart.setText(String.valueOf(SessionInformation.cartInstance.getListMedia().size()) + " media");
         super.show();
     }
-
+    
     public void setImage() {
         // fix image path caused by fxml
         File file1 = new File(ViewsConfig.IMAGE_PATH + "/" + "Logo.png");
@@ -212,7 +213,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     public void update(Observable observable) {
         if (observable instanceof MediaHandler) update((MediaHandler) observable);
     }
-
+    /*
+    /  common coupling vì phương thức update() sử dụng biến global của lớp SessionInformation là cartInstance
+     */
     private void update(MediaHandler mediaHandler) {
         int requestQuantity = mediaHandler.getRequestQuantity();
         Media media = mediaHandler.getMedia();

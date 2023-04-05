@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-
 /**
  * @author
  */
@@ -28,14 +27,19 @@ public class AuthenticationController extends BaseController {
             return true;
         }
     }
-
+    /*
+    /    common coupling vì hàm getMainUser sử dụng chung global data từ class SessionInformation
+     */
     public User getMainUser() throws ExpiredSessionException {
         if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
             logout();
             throw new ExpiredSessionException();
         } else return SessionInformation.mainUser.cloneInformation();
     }
-
+    /*
+    /
+        common coupling vì hàm login  sử dụng chung global data từ class SessionInformation
+     */
     public void login(String email, String password) throws Exception {
         try {
             User user = new UserDAO().authenticate(email, md5(password));
@@ -46,7 +50,9 @@ public class AuthenticationController extends BaseController {
             throw new FailLoginException();
         }
     }
-
+    /*
+    /    common coupling vì hàm logout sử dụng chung global data từ class SessionInformation là mainUser va expiredTime
+     */
     public void logout() {
         SessionInformation.mainUser = null;
         SessionInformation.expiredTime = null;
