@@ -12,6 +12,7 @@ import views.screen.ViewsConfig;
 
 import java.io.IOException;
 
+// Temporal cohesion : class vừa chứa các hàm chỉ trạng thái thông báo, vừa chứa các hàm thực hiện các hành động như : close, show, setData...
 
 public class PopupScreen extends BaseScreenHandler {
 
@@ -36,7 +37,7 @@ public class PopupScreen extends BaseScreenHandler {
     }
 
     // Logical cohesion : success() va error(); show()
-    
+
     public static void success(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
                 .show(true);
