@@ -66,6 +66,8 @@ public class CartScreenHandler extends BaseScreenHandler {
 		}
 	}
 
+	// Temporal cohesion: cac cong viec btnPlaceOrder.setOnMouseClicked  va  aimsImage.setOnMouseClicked khong lien quan toi nhau
+	
 	protected void setupFunctionality() throws Exception {
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");

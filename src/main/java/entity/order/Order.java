@@ -41,7 +41,7 @@ public class Order {
     public List getListOrderMedia() {
         return this.orderMediaList;
     }
-
+    
     public int getShippingFees() {
         if (deliveryInfo == null) return 0;
         return this.shippingFees;
@@ -50,7 +50,7 @@ public class Order {
     public DeliveryInfo getDeliveryInfo() {
         return deliveryInfo;
     }
-
+    // Communication cohesion: viec tinh shippingFees khong lien quan toi phuong thuc setDeliveryInfo, chung chi lien quan toi du lieu
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
         this.deliveryInfo = deliveryInfo;
         this.shippingFees = deliveryInfo.calculateShippingFee(this);

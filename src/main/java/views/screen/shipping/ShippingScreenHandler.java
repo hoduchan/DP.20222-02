@@ -85,6 +85,8 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 
 	}
 
+	// Procedural cohesion : submitDeliveryInfo() sau do den preprocessDeliveryInfo()
+	
 	@FXML
 	void submitDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
 

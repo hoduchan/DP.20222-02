@@ -44,6 +44,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField securityCode;
 
+	// Temporal cohesion: 2 phuong thuc setupData() va setupFunctionality() chi lien quan toi thu tu thuc hien  
+	
 	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 		super(stage, screenPath);
 		try {

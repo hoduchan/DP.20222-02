@@ -25,6 +25,8 @@ public class PopupScreen extends BaseScreenHandler {
         super(stage, ViewsConfig.POPUP_PATH);
     }
 
+    // Communication cohesion : khai bao doi tuong popup va su dung
+
     private static PopupScreen popup(String message, String imagePath, Boolean undecorated) throws IOException{
         PopupScreen popup = new PopupScreen(new Stage());
         if (undecorated) popup.stage.initStyle(StageStyle.UNDECORATED);
@@ -33,6 +35,8 @@ public class PopupScreen extends BaseScreenHandler {
         return popup;
     }
 
+    // Logical cohesion : success() va error(); show()
+    
     public static void success(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
                 .show(true);
