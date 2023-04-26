@@ -23,6 +23,7 @@ public class Cart {
         lstCartItem.remove(cm);
     }
 
+    // content coupling vì lstCartItem truyền tham chiếu nên có thể thay đổi bên ngoài
     public List getListMedia(){
         return lstCartItem;
     }
@@ -60,6 +61,7 @@ public class Cart {
         if (!allAvailable) throw new MediaNotAvailableException("Some media not available");
     }
 
+    // Stamp coupling vì biến media chỉ sử dụng 1 lần
     public CartItem checkMediaInCart(Media media){
         for (CartItem cartItem : lstCartItem) {
             if (cartItem.getMedia().getId() == media.getId()) return cartItem;
