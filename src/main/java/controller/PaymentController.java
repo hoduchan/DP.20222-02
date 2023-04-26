@@ -20,6 +20,9 @@ import subsystem.InterbankSubsystem;
  * 
  * @author hieud
  *
+ * 
+ *  Procedural cohesion vì payOrder cần dùng  getExpirationDate để lấy ngày hết hạn thẻ tại thời điểm thanh toán
+ *  emptyCart -> không liên quan -> Coincidental cohesion
  */
 public class PaymentController extends BaseController {
 

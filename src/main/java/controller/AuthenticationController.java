@@ -18,6 +18,10 @@ import java.util.Objects;
 /**
  * @author
  */
+/** 
+ * Procedual Cohesion vì các phương thức đều liên quan đến việc xác thực người dùng 
+ * và đăng nhập đăng xuất nên nằm trong cùng một lớp theo 1 trình tự nhất định
+*/ 
 public class AuthenticationController extends BaseController {
 
     public boolean isAnonymousSession() {

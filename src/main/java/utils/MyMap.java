@@ -11,6 +11,7 @@ import java.util.*;
  * 
  * @author hieud
  *
+ * Functional cohesion/High coupling
  */
 public class MyMap extends LinkedHashMap<String, Object> {
 	private static final long serialVersionUID = 1L;

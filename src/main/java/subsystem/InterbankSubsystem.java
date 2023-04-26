@@ -10,6 +10,7 @@ import subsystem.interbank.InterbankSubsystemController;
  * 
  * @author hieud
  *
+ * Communicational Cohesion dùng chung ctrl
  */
 public class InterbankSubsystem implements InterbankInterface {
 

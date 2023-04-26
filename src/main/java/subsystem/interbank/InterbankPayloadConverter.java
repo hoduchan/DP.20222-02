@@ -12,6 +12,9 @@ import java.util.Map;
 
 /**
  * @author
+ * 
+ * Procedural cohesion vì các method thực hiện theo trình tự nhật định
+ * // Coincidental cohesion vì các method getToday() chức năng không liên quan đến
  */
 public class InterbankPayloadConverter {
 

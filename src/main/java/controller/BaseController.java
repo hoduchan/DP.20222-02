@@ -9,6 +9,8 @@ import entity.media.Media;
 /**
  * This class is the base controller for our AIMS project
  * @author nguyenlm
+ * 
+ * Functional Cohesion vì các phương thức đều liên quan đến việc xử lý giỏ hàng
  */
 public class BaseController {
     

@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Coincidental cohesion vì class này thực hiện nhiều trách nhiệm khác nhau phí ship, thuế, tổng tiền
+ */
+
 public class Order {
 
     private int shippingFees;

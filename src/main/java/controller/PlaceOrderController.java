@@ -20,6 +20,9 @@ import java.util.regex.Pattern;
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
+ * 
+ *  Coincidental Cohesion vì các phương thức xử lý nhiều nhiệm vụ 
+ *  liên quan đến việc tạo đơn hàng và xử lý thông tin người dùng
  */
 public class PlaceOrderController extends BaseController {
 
