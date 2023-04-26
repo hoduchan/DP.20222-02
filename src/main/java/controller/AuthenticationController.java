@@ -53,6 +53,7 @@ public class AuthenticationController extends BaseController {
     /*
     /    common coupling vì hàm logout sử dụng chung global data từ class SessionInformation là mainUser va expiredTime
      */
+ // Procedural Cohesion vì phương thức logout() được nhóm lại trong Class này để tuân theo trình tự thực thi từ login -> Logout
     public void logout() {
         SessionInformation.mainUser = null; /* content coupling: sử dụng trực tiếp mainUser của lớp SessionInformation*/
         SessionInformation.expiredTime = null; /* content coupling: sử dụng trực tiếp expiredTime của lớp SessionInformation*/
