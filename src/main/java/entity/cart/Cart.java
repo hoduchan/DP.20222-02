@@ -40,6 +40,7 @@ public class Cart {
         return total;
     }
 
+    //vi phạm SRP vì cần tách ra lớp khác để tính toán giá tiền của giỏ hàng
     public int calSubtotal(){
         int total = 0;
         for (Object obj : lstCartItem) {
@@ -49,6 +50,7 @@ public class Cart {
         return total;
     }
 
+    //vi phạm SRP vì thao tác kiểm tra số lượng sản phầm cần tách ra lớp khác
     public void checkAvailabilityOfProduct() throws SQLException{
         boolean allAvailable = true;
         for (Object object : lstCartItem) {
