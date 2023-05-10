@@ -18,6 +18,17 @@ import java.util.Objects;
 /**
  * @author
  */
+<<<<<<< HEAD
+=======
+/** 
+ * Procedual Cohesion vì các phương thức đều liên quan đến việc xác thực người dùng 
+ * và đăng nhập đăng xuất nên nằm trong cùng một lớp theo 1 trình tự nhất định
+*/
+/* SRP
+* Lớp này tồn tại nhiều hơn 1 lý do để thay đổi. NVu chính là xác thực
+* Nếu thay đổi cách thức mã hóa( dùng base64, AES, SHA256...) sẽ phải thay đổi mã nguồn của lớp
+*/
+>>>>>>> 9e83d68 (find: SRP + OCP)
 public class AuthenticationController extends BaseController {
 
     public boolean isAnonymousSession() {

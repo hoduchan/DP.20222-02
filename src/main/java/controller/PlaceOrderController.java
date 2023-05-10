@@ -21,6 +21,9 @@ import java.util.regex.Pattern;
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
+/*
+*  SRP chứa thêm các hàm là nhiệm vụ validate
+* */
 public class PlaceOrderController extends BaseController {
 
     /**

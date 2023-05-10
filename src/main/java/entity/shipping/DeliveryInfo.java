@@ -20,7 +20,10 @@ public class DeliveryInfo {
         this.shippingInstructions = shippingInstructions;
         this.distanceCalculator = distanceCalculator;
     }
-
+    /*
+    *  Vi phạm OCP vì khi thay đổi các tính phí
+    * cũng như các tính khoảng cách sẽ phải sửa đổi
+    */
     public int calculateShippingFee(Order order) {
         int distance = distanceCalculator.calculateDistance(address, province);
         return (int) (distance * 1.2);
