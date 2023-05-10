@@ -28,6 +28,7 @@ public class Invoice {
         return amount;
     }
     // coincidental cohesion: saveInvoice() khong lien quan toi nghiep vu cua class
+    //SOLID : vì vi phạm nguyên tắc SRP vì entity này chỉ cần tạo ra các đối tượng invoice mà ko nên có các phương thức như saveInvoice
     public void saveInvoice(){
         
     }
