@@ -24,6 +24,9 @@ import java.util.regex.Pattern;
  *  Coincidental Cohesion vì các phương thức xử lý nhiều nhiệm vụ 
  *  liên quan đến việc tạo đơn hàng và xử lý thông tin người dùng
  */
+/*
+*  SRP chứa thêm các hàm là nhiệm vụ validate
+* */
 public class PlaceOrderController extends BaseController {
 
     /**

@@ -84,6 +84,10 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
+
+	/*
+	 * OCP nếu thêm phương thức thay toán mới không phải dùng CreditCard nữa phải sửa đổi ha
+	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
 			String expirationDate, String securityCode) {
 		Map<String, String> result = new Hashtable<String, String>();
