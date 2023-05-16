@@ -61,7 +61,7 @@ public class LoginScreenHandler extends BaseScreenHandler{
     public AuthenticationController getBController() {
         return (AuthenticationController) super.getBController();
     }
-    // stamp coupling v� ham setupData truyen vao dto nhung khong su dung
+    // stamp coupling vï¿½ ham setupData truyen vao dto nhung khong su dung
     protected void setupData(Object dto) throws Exception {
     }
 
@@ -79,8 +79,7 @@ public class LoginScreenHandler extends BaseScreenHandler{
         }
     }
 
-    // Coincidental Cohesion: hàm này đc gọi nhiều lần nên để ra class Util
-
+ // Coincidental cohesion hàm này nên để ra util 
     @FXML
     void backToHomeScreen(MouseEvent event) throws IOException, InterruptedException, SQLException {
         this.homeScreenHandler.show();
