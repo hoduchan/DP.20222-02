@@ -14,6 +14,11 @@ import utils.Utils;
 import views.screen.home.HomeScreenHandler;
 import views.screen.popup.PopupScreen;
 
+/*
+* LSP
+* các Screen con như PopUpScreen,  IntroScreenHandler
+* khi sử method setPreviousScreen() gây ra ngoại lệ
+* */
 public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
 	private static final Logger LOGGER = Utils.getLogger(BaseScreenHandler.class.getName());

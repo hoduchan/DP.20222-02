@@ -31,6 +31,11 @@ public class InterbankSubsystem implements InterbankInterface {
 	 * @see InterbankInterface#payOrder(CreditCard, int,
 	 *      String)
 	 */
+	/*
+	 * OCP
+	 * nếu thêm phương thức thay toán mới ví dụ thẻ nội địa (domestic card)
+	 *  không phải dùng CreditCard nữa phải sửa đổi lại code
+	 */
 	public PaymentTransaction payOrder(CreditCard card, int amount, String contents) {
 		PaymentTransaction transaction = ctrl.payOrder(card, amount, contents);
 		return transaction;

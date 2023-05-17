@@ -12,7 +12,11 @@ import views.screen.ViewsConfig;
 
 import java.io.IOException;
 
-
+/*
+*  LSP
+*  Lớp BaseController có các method setPreviousScreen(), getPreviousScreen() để quay lại trang trước
+*  Tuy nhiên PopupScreen lại không có cnày.
+* */
 public class PopupScreen extends BaseScreenHandler {
 
     @FXML

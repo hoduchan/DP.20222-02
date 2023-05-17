@@ -12,6 +12,10 @@ import entity.media.Media;
  * 
  * Functional Cohesion vì các phương thức đều liên quan đến việc xử lý giỏ hàng
  */
+/*
+* LSP
+* Các class kế thừa như Authentication không cần có  checkMediaInCart()  getListCartMedia()
+* */
 public class BaseController {
     
     /**
