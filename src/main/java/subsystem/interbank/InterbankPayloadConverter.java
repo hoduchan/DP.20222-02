@@ -13,6 +13,9 @@ import java.util.Map;
 /**
  * @author
  */
+/**
+ * SOLID: // vi pham DIP: vi phu thuoc vao CreditCard, => tao lop AbstractPaymentMethod
+ */
 public class InterbankPayloadConverter {
 
     /**
