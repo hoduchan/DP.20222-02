@@ -3,6 +3,10 @@ package entity.shipping;
 /**
  * @author
  */
+
+//DIP vì các thông tin tỉnh thành không được trừu tượng hóa,
+// lớp phụ thuộc vào các giá trị cụ thể,
+// cần chuyển các thông tin tỉnh thành vào 1 lớp khác để lớp ShippingConfigs phụ thuộc vào
 public class ShippingConfigs {
     // common coupling
     public static String[] PROVINCES = {

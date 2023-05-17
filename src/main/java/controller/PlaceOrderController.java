@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *  liên quan đến việc tạo đơn hàng và xử lý thông tin người dùng
  */
 /*
-*  SRP chứa thêm các hàm là nhiệm vụ validate
+*  SRP vì ngoài các hàm có nhiệm vụ tạo đơn hàng, hóa đơn còn chứa thêm các hàm làm nhiệm vụ validate
 * */
 public class PlaceOrderController extends BaseController {
 

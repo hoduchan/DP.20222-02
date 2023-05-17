@@ -3,6 +3,7 @@ package entity.shipping;
 import entity.order.Order;
 import org.example.DistanceCalculator;
 
+// DIP vì phụ thuộc vào lớp DistanceCalculator - 1 lớp cấp thấp, nên sử dụng giao diện DistanceCalculatorInterface 
 public class DeliveryInfo {
 
     protected String name;

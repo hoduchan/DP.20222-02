@@ -23,8 +23,8 @@ import java.util.Objects;
  * và đăng nhập đăng xuất nên nằm trong cùng một lớp theo 1 trình tự nhất định
 */
 /* SRP
-* Lớp này tồn tại nhiều hơn 1 lý do để thay đổi. NVu chính là xác thực
-* Nếu thay đổi cách thức mã hóa( dùng base64, AES, SHA256...) sẽ phải thay đổi mã nguồn của lớp
+* Lớp này tồn tại nhiều hơn 1 lý do để thay đổi. Nhiệm vụ chính là xác thực đăng nhập
+* nhưng lại chứa phương thức mã hóa mật khẩu md5(), cần tách thành các lớp riêng biệt.
 */
 public class AuthenticationController extends BaseController {
 
