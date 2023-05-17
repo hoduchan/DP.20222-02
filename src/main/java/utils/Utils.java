@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author nguyenlm Contains helper functions
  */
 /*
-* SRP class Utils chứa 2 nhiệm vụ format ngày và Logger 
+* SRP vì chứa 2 nhiệm vụ Format ngày tháng và Logger 
 * */
 public class Utils {
 
