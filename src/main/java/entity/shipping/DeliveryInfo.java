@@ -20,8 +20,8 @@ public class DeliveryInfo {
         this.shippingInstructions = shippingInstructions;
         this.distanceCalculator = distanceCalculator;
     }
-//SOLID : vi phạm nguyên lý DIP vì phụ thuộc trực tiếp vào Class distanceCalculator nên sau này 
-//những thay đổi trong tương lai hàm calculateDistance sẽ làm thay đổi class DeliveryInfo
+  //SOLID : vi phạm nguyên lý DIP vì phụ thuộc trực tiếp vào Class distanceCalculator nên sau này 
+  //những thay đổi trong tương lai hàm calculateDistance sẽ làm thay đổi class DeliveryInfo
     public int calculateShippingFee(Order order) {
         int distance = distanceCalculator.calculateDistance(address, province);
         return (int) (distance * 1.2);

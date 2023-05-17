@@ -59,6 +59,8 @@ public class AuthenticationController extends BaseController {
      * @param message - plain text as {@link String String}.
      * @return cipher text as {@link String String}.
      */
+    // SOLID : vi phạm nguyên lý SRP vì class AuthenticationController thực hiện nhiều hơn 1 nhiệm vụ như vừa xác thực( login)
+    //vừa phải mã hóa  dữ liệu
     private String md5(String message) {
         String digest = null;
         try {

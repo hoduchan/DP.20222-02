@@ -122,8 +122,7 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 	public PlaceOrderController getBController(){
 		return (PlaceOrderController) super.getBController();
 	}
-
-//SOLID : vì vi phạm Nguyên lý DIP vì phương thức notifyError() nên được implements từ 1 class Abstract Notify riêng
+	//SOLID : vì vi phạm Nguyên lý DIP vì phương thức notifyError() nên được implements từ 1 class Abstract Notify riêng
 	public void notifyError(){
 		// TODO: implement later on if we need
 	}

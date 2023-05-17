@@ -6,7 +6,7 @@ public class Invoice {
 
     private Order order;
     private int amount;
-    
+
     public Invoice(){
 
     }
@@ -28,7 +28,7 @@ public class Invoice {
     public int getAmount() {
         return amount;
     }
-
+    //SOLID : vì vi phạm nguyên tắc SRP vì entity này chỉ cần tạo ra các đối tượng invoice mà ko nên có các phương thức như saveInvoice
     public void saveInvoice(){
         
     }
