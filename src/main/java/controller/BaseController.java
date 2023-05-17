@@ -10,6 +10,10 @@ import entity.media.Media;
  * This class is the base controller for our AIMS project
  * @author nguyenlm
  */
+/*
+* LSP
+* Các class kế thừa như Authentication không cần có  checkMediaInCart()  getListCartMedia()
+* */
 public class BaseController {
     
     /**

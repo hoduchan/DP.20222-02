@@ -83,7 +83,9 @@ public class PaymentController extends BaseController {
 	 */
 
 	/*
-	 * OCP nếu thêm phương thức thay toán mới không phải dùng CreditCard nữa phải sửa đổi ha
+	 * OCP
+	 * nếu thêm phương thức thay toán mới ví dụ thẻ nội địa (domestic card)
+	 *  không phải dùng CreditCard nữa phải sửa đổi lại code
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
 			String expirationDate, String securityCode) {
