@@ -10,6 +10,12 @@ import entity.media.Media;
  * This class is the base controller for our AIMS project
  * @author nguyenlm
  */
+
+// SOLID: Vi phạm LSP
+// AuthenticationController, HomeController, PaymentController, PlaceOrderController
+// SessionInformation, ViewCartController extends BaseController nhưng không thực hiện 
+// được các phương thức của lớp cha
+
 public class BaseController {
     
     /**

@@ -12,6 +12,14 @@ import views.screen.ViewsConfig;
 
 import java.io.IOException;
 
+// SOLID: Vi phạm OCP, ISP
+// Tại contructor của các lớp trong
+// module này, khi gọi các phương
+// thức setupFunctionality,
+// setupData đều có bắt sự kiện
+// Exception, vàxử lýexception theo
+// cách cố định, việc thay đổi cách xử
+// lý lỗi sễ khó khăn.
 
 public class PopupScreen extends BaseScreenHandler {
 

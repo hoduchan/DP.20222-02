@@ -3,6 +3,13 @@ package entity.payment;
 /**
  * @author
  */
+
+// SOLID : Vi phạm OCP
+// Lớp này chỉ chứa đói tượng Card,
+// các lớp khác sử dụng trực tiếp
+// đối tượng Card. Việc mở rộng sau
+// này có thể vi phạm OCP
+
 public class CreditCard {
 
     private String cardCode;

@@ -20,6 +20,10 @@ public class DeliveryInfo {
         this.shippingInstructions = shippingInstructions;
         this.distanceCalculator = distanceCalculator;
     }
+    
+    // SOLID: Vi phạm OCP
+    // Các class order, PlaceOrderController,.. sẽ phải modify lại khi có sự thay đổi của calculateDistance
+    
   //SOLID : vi phạm nguyên lý DIP vì phụ thuộc trực tiếp vào Class distanceCalculator nên sau này 
   //những thay đổi trong tương lai hàm calculateDistance sẽ làm thay đổi class DeliveryInfo
     public int calculateShippingFee(Order order) {

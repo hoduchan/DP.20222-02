@@ -32,6 +32,9 @@ public class MediaDAO {
         return medium;
     }
 
+// Vi phạm OCP
+// Các lớp BookDAO, CDDAO, DVDDAO override chỉ lấy 1 loại trong số Book, CD, DVD
+
     public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM Media ;";
         Statement stm = AIMSDB.getConnection().createStatement();
