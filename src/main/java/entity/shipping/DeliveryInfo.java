@@ -1,7 +1,7 @@
 package entity.shipping;
 
 import entity.order.Order;
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
 
 public class DeliveryInfo {
 

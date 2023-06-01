@@ -7,6 +7,10 @@ import java.util.List;
 import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
+/**
+ * singleton: Cart can la duy nhat, do do can ap dung singleton
+ *
+ * */
 public class Cart {
     
     private List<CartItem> lstCartItem;
