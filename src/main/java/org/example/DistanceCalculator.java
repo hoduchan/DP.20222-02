@@ -1,4 +1,4 @@
-package entity.shipping;
+package org.example;
 
 public class DistanceCalculator {
     public int calculateDistance(String address, String province) {

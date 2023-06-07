@@ -1,6 +1,7 @@
 package entity.shipping;
 
 import entity.order.Order;
+import org.example.DistanceCalculator;
 //import org.example.DistanceCalculator;
 
 public class DeliveryInfo {
@@ -19,6 +20,9 @@ public class DeliveryInfo {
         this.address = address;
         this.shippingInstructions = shippingInstructions;
         this.distanceCalculator = distanceCalculator;
+    }
+
+    public DeliveryInfo() {
     }
 
     public int calculateShippingFee(Order order) {

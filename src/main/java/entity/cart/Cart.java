@@ -12,11 +12,19 @@ import entity.media.Media;
  *
  * */
 public class Cart {
-    
+    private static Cart instance;
     private List<CartItem> lstCartItem;
 
-    public Cart() {
+
+    private Cart() {
         lstCartItem = new ArrayList<>();
+    }
+
+    public static Cart getInstance(){
+        if(instance == null){
+            instance = new Cart();
+        }
+        return instance;
     }
 
     public void addCartMedia(CartItem cm){

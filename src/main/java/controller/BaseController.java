@@ -11,14 +11,14 @@ import entity.media.Media;
  * @author nguyenlm
  */
 public class BaseController {
-    
+    private SessionInformation sessionInformation = SessionInformation.getInstance();
     /**
      * The method checks whether the Media in Cart, if it were in, we will return the CartMedia else return null
      * @param media
      * @return CartMedia or null
      */
     public CartItem checkMediaInCart(Media media){
-        return SessionInformation.cartInstance.checkMediaInCart(media);
+        return sessionInformation.getCartInstance().checkMediaInCart(media);
     }
 
     /**
@@ -26,6 +26,6 @@ public class BaseController {
      * @return List[CartMedia]
      */
     public List getListCartMedia(){
-        return SessionInformation.cartInstance.getListMedia();
+        return sessionInformation.getCartInstance().getListMedia();
     }
 }

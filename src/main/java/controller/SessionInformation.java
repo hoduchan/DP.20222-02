@@ -15,12 +15,12 @@ public class SessionInformation {
 //    public static Cart cartInstance = new Cart();
 //    public static LocalDateTime expiredTime;
     private User mainUser;
-    private Cart cartInstance = new Cart();
+    private Cart cartInstance;
     private LocalDateTime expiredTime;
 
-    private static SessionInformation instance;
+    private static  SessionInformation instance;
 
-    public static SessionInformation getInstance(){
+    public static synchronized SessionInformation  getInstance(){
         if(instance == null){
             instance = new SessionInformation();
 
@@ -29,7 +29,6 @@ public class SessionInformation {
     }
 
     private SessionInformation(){
-        instance = getInstance();
     }
 
     public User getMainUser() {
@@ -41,7 +40,7 @@ public class SessionInformation {
     }
 
     public Cart getCartInstance() {
-        return cartInstance;
+        return Cart.getInstance();
     }
 
     public void setCartInstance(Cart cartInstance) {

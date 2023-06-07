@@ -19,7 +19,7 @@ import java.util.Objects;
  * @author
  */
 public class AuthenticationController extends BaseController {
-
+    private SessionInformation sessionInformation = SessionInformation.getInstance();
     public boolean isAnonymousSession() {
         try {
             getMainUser();
@@ -30,26 +30,26 @@ public class AuthenticationController extends BaseController {
     }
 
     public User getMainUser() throws ExpiredSessionException {
-        if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
+        if (sessionInformation.getMainUser() == null || sessionInformation.getExpiredTime() == null || sessionInformation.getExpiredTime().isBefore(LocalDateTime.now())) {
             logout();
             throw new ExpiredSessionException();
-        } else return SessionInformation.mainUser.cloneInformation();
+        } else return sessionInformation.getMainUser().cloneInformation();
     }
 
     public void login(String email, String password) throws Exception {
         try {
             User user = new UserDAO().authenticate(email, md5(password));
             if (Objects.isNull(user)) throw new FailLoginException();
-            SessionInformation.mainUser = user;
-            SessionInformation.expiredTime = LocalDateTime.now().plusHours(24);
+            sessionInformation.setMainUser(user);
+            sessionInformation.setExpiredTime(LocalDateTime.now().plusHours(24)) ;
         } catch (SQLException ex) {
             throw new FailLoginException();
         }
     }
 
     public void logout() {
-        SessionInformation.mainUser = null;
-        SessionInformation.expiredTime = null;
+        sessionInformation.setExpiredTime(null);
+        sessionInformation.setMainUser(null);
     }
 
     /**
