@@ -81,6 +81,9 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
+	/*
+	*   khi thay doi thêm cách thanh toán thẻ thi phai sua code nen ta ap dung Factory Pattern o day de tranh OCP
+	 * */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
 			String expirationDate, String securityCode) {
 		Map<String, String> result = new Hashtable<String, String>();

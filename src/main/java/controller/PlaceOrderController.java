@@ -8,6 +8,8 @@ import entity.order.Order;
 import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.ShippingConfigs;
+import entity.shipping.caculator.IDistanceCalculator;
+import entity.shipping.factorycaculator.FactoryDistanceCalculate;
 import org.example.DistanceCalculator;
 
 import java.io.IOException;
@@ -70,7 +72,7 @@ public class PlaceOrderController extends BaseController {
                 String.valueOf(info.get("province")),
                 String.valueOf(info.get("address")),
                 String.valueOf(info.get("instructions")),
-                new DistanceCalculator());
+                new FactoryDistanceCalculate());
         System.out.println(deliveryInfo.getProvince());
         return deliveryInfo;
     }
