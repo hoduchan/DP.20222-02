@@ -10,23 +10,32 @@ public class DeliveryInfo {
     private String province;
     private String address;
     private String shippingInstructions;
-//    protected DistanceCalculator distanceCalculator;
+    protected CalcuDistanceStrategy distanceCalculator;
+
+    private CalculatorShipFreeStrategy calculatorShipFreeStrategy;
+
+    public void setCalculatorShipFreeStrategy(CalculatorShipFreeStrategy calculatorShipFreeStrategy) {
+        this.calculatorShipFreeStrategy = calculatorShipFreeStrategy;
+    }
 
     public DeliveryInfo(String name, String phone, String province, String address, String shippingInstructions
-//            , DistanceCalculator distanceCalculator
+            , CalcuDistanceStrategy distanceCalculator
     ) {
         this.name = name;
         this.phone = phone;
         this.province = province;
         this.address = address;
         this.shippingInstructions = shippingInstructions;
-//        this.distanceCalculator = distanceCalculator;
+        this.distanceCalculator = distanceCalculator;
     }
 
-//    public int calculateShippingFee(Order order) {
-//        int distance = distanceCalculator.calculateDistance(address, province);
-//        return (int) (distance * 1.2);
-//    }
+    public int calculateShippingFee(Order order) {
+        int distance = distanceCalculator.calculateDistance(address, province);
+        if (calculatorShipFreeStrategy == null) {
+            this.calculatorShipFreeStrategy = new CalShippingFee();
+        }
+        return (int) (this.calculatorShipFreeStrategy.calculatorShippingFee(distance));
+    }
 
     public String getName() {
         return name;

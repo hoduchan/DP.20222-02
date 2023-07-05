@@ -6,6 +6,7 @@ import entity.cart.CartItem;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderItem;
+import entity.shipping.AdapterDistance;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.ShippingConfigs;
 //import org.example.DistanceCalculator;
@@ -66,17 +67,16 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
         validateDeliveryInfo(info);
-//        DeliveryInfo deliveryInfo = new DeliveryInfo(
-//                String.valueOf(info.get("name")),
-//                String.valueOf(info.get("phone")),
-//                String.valueOf(info.get("province")),
-//                String.valueOf(info.get("address")),
-//                String.valueOf(info.get("instructions"))
-//                new DistanceCalculator()
-////                );
-////        System.out.println(deliveryInfo.getProvince());
-//        return deliveryInfo;
-        return null;
+        DeliveryInfo deliveryInfo = new DeliveryInfo(
+                String.valueOf(info.get("name")),
+                String.valueOf(info.get("phone")),
+                String.valueOf(info.get("province")),
+                String.valueOf(info.get("address")),
+                String.valueOf(info.get("instructions")),
+                new AdapterDistance()
+                );
+        System.out.println(deliveryInfo.getProvince());
+        return deliveryInfo;
     }
     
     /**
