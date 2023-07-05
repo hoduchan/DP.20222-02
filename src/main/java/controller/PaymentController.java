@@ -8,7 +8,9 @@ import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
 import entity.cart.Cart;
+import entity.payment.Card;
 import entity.payment.CreditCard;
+import entity.payment.CreditCardFactory;
 import entity.payment.PaymentTransaction;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
@@ -21,12 +23,12 @@ import subsystem.InterbankSubsystem;
  * @author hieud
  *
  */
-public class PaymentController extends BaseController {
-
+public abstract class PaymentController extends BaseController {
+	SessionInformation sessionInformation = SessionInformation.getInstance();
 	/**
 	 * Represent the card used for payment
 	 */
-	private CreditCard card;
+	private Card card;
 
 	/**
 	 * Represent the Interbank subsystem
@@ -44,7 +46,7 @@ public class PaymentController extends BaseController {
 	 * @throws InvalidCardException - if the string does not represent a valid date
 	 *                              in the expected format
 	 */
-	private String getExpirationDate(String date) throws InvalidCardException {
+	public String getExpirationDate(String date) throws InvalidCardException {
 		String[] strs = date.split("/");
 		if (strs.length != 2) {
 			throw new InvalidCardException();
@@ -81,29 +83,47 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
-	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode) {
-		Map<String, String> result = new Hashtable<String, String>();
-		result.put("RESULT", "PAYMENT FAILED!");
-		try {
-			this.card = new CreditCard(
-					cardNumber,
-					cardHolderName,
-					getExpirationDate(expirationDate),
-					Integer.parseInt(securityCode));
+	public abstract Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
+			String expirationDate, String securityCode);
+//		Map<String, String> result = new Hashtable<String, String>();
+//		result.put("RESULT", "PAYMENT FAILED!");
+//		try {
+////			this.card = new CreditCard(
+////					cardNumber,
+////					cardHolderName,
+////					getExpirationDate(expirationDate),
+////					Integer.parseInt(securityCode));
+//			this.card = new CreditCardFactory(cardNumber, cardHolderName,
+//					getExpirationDate(expirationDate), Integer.parseInt(securityCode)).createCard();
+//			System.out.println(this.card);
+//			this.interbank = new InterbankSubsystem();
+//			PaymentTransaction transaction = interbank.payOrder(card, amount, contents);
+//
+//			result.put("RESULT", "PAYMENT SUCCESSFUL!");
+//			result.put("MESSAGE", "You have successfully paid the order!");
+//		} catch (PaymentException | UnrecognizedException ex) {
+//			result.put("MESSAGE", ex.getMessage());
+//		}
+//		return result;
 
-			this.interbank = new InterbankSubsystem();
-			PaymentTransaction transaction = interbank.payOrder(card, amount, contents);
 
-			result.put("RESULT", "PAYMENT SUCCESSFUL!");
-			result.put("MESSAGE", "You have successfully paid the order!");
-		} catch (PaymentException | UnrecognizedException ex) {
-			result.put("MESSAGE", ex.getMessage());
-		}
-		return result;
+	public Card getCard() {
+		return this.card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
+	public void setInterbank(InterbankInterface interbank) {
+		this.interbank = interbank;
+	}
+
+	public InterbankInterface getInterbank() {
+		return this.interbank;
 	}
 
 	public void emptyCart(){
-        SessionInformation.cartInstance.emptyCart();
+		sessionInformation.getCartInstance().emptyCart(); /// fix common coupling
     }
 }
