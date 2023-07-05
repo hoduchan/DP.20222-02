@@ -8,7 +8,7 @@ import entity.order.Order;
 import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.ShippingConfigs;
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
  * @author nguyenlm
  */
 public class PlaceOrderController extends BaseController {
+    SessionInformation sessionInformation = SessionInformation.getInstance();
 
     /**
      * Just for logging purpose
@@ -33,7 +34,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public void placeOrder() throws SQLException {
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        sessionInformation.getCartInstance().checkAvailabilityOfProduct();/// fix common coupling
     }
 
     /**
@@ -42,7 +43,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public Order createOrder() throws SQLException {
-        return new Order(SessionInformation.cartInstance);
+        return new Order(sessionInformation.getCartInstance()); /// fix common coupling
     }
 
     /**
@@ -50,6 +51,7 @@ public class PlaceOrderController extends BaseController {
      * @param order
      * @return Invoice
      */
+    // Stamp coupling
     public Invoice createInvoice(Order order) {
         return new Invoice(order);
     }
@@ -64,15 +66,17 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
         validateDeliveryInfo(info);
-        DeliveryInfo deliveryInfo = new DeliveryInfo(
-                String.valueOf(info.get("name")),
-                String.valueOf(info.get("phone")),
-                String.valueOf(info.get("province")),
-                String.valueOf(info.get("address")),
-                String.valueOf(info.get("instructions")),
-                new DistanceCalculator());
-        System.out.println(deliveryInfo.getProvince());
-        return deliveryInfo;
+//        DeliveryInfo deliveryInfo = new DeliveryInfo(
+//                String.valueOf(info.get("name")),
+//                String.valueOf(info.get("phone")),
+//                String.valueOf(info.get("province")),
+//                String.valueOf(info.get("address")),
+//                String.valueOf(info.get("instructions"))
+//                new DistanceCalculator()
+////                );
+////        System.out.println(deliveryInfo.getProvince());
+//        return deliveryInfo;
+        return null;
     }
     
     /**
