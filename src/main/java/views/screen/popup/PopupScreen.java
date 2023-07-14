@@ -2,7 +2,6 @@ package views.screen.popup;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -13,13 +12,10 @@ import views.screen.ViewsConfig;
 import java.io.IOException;
 
 
-public class PopupScreen extends BaseScreenHandler {
+public class PopupScreen extends HandleFeedBackScreen {
 
     @FXML
     ImageView icon;
-
-    @FXML
-    Label message;
 
     public PopupScreen(Stage stage) throws IOException{
         super(stage, ViewsConfig.POPUP_PATH);
@@ -37,7 +33,6 @@ public class PopupScreen extends BaseScreenHandler {
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
                 .show(true);
     }
-
     public static void error(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickerror.png", false)
                 .show(false);
@@ -67,9 +62,5 @@ public class PopupScreen extends BaseScreenHandler {
         delay.play();
     }
 
-    protected void setupData(Object dto) throws Exception {
-    }
 
-    protected void setupFunctionality() throws Exception {
-    }
 }

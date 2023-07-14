@@ -7,11 +7,14 @@ import java.util.logging.Logger;
 
 import controller.AuthenticationController;
 import controller.BaseController;
+import controller.PaymentController;
+import entity.invoice.Invoice;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.home.HomeScreenHandler;
+import views.screen.popup.HandleFeedBackScreen;
 import views.screen.popup.PopupScreen;
 
 public abstract class BaseScreenHandler extends FXMLScreenHandler {
@@ -26,9 +29,41 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
 
-	protected BaseScreenHandler(Stage stage, String screenPath) throws IOException {
+	private HandleFeedBackScreen handleFeedBackScreen;
+
+	protected BaseScreenHandler(Stage stage, String screenPath,Object dto) throws IOException {
 		super(screenPath);
 		this.stage = stage;
+		try {
+			setupData(dto);
+			setupFunctionality();
+		} catch (IOException ex) {
+			handleIOException(ex);
+		} catch (Exception ex) {
+			handlexception(ex);
+		}
+	}
+
+	private void handlexception(Exception ex) throws IOException {
+		LOGGER.info(ex.getMessage());
+		if(this.handleFeedBackScreen == null){
+			handleFeedBackScreen = new PopupScreen(stage);
+		}
+		this.handleFeedBackScreen.error("Error when loading resources.");
+	}
+
+	protected void handleIOException(IOException ex) throws IOException{
+		LOGGER.info(ex.getMessage());
+		if(this.handleFeedBackScreen == null){
+			handleFeedBackScreen = new PopupScreen(stage);
+		}
+		this.handleFeedBackScreen.error("Error when loading resources.");
+	}
+
+	protected  void  setupData(Object dto) throws Exception {
+	}
+
+	protected void setupFunctionality() throws Exception {
 	}
 
 	public void setPreviousScreen(BaseScreenHandler prev) {
@@ -67,4 +102,7 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		this.homeScreenHandler = HomeScreenHandler;
 	}
 
+	public void setHandleFeedBackScreen(HandleFeedBackScreen handleFeedBackScreen) {
+		this.handleFeedBackScreen = handleFeedBackScreen;
+	}
 }
