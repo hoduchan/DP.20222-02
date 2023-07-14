@@ -13,7 +13,6 @@ import entity.payment.PaymentTransaction;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
-
 /**
  * This {@code PaymentController} class control the flow of the payment process
  * in our AIMS Software.
@@ -21,6 +20,7 @@ import subsystem.InterbankSubsystem;
  * @author hieud
  *
  */
+
 public class PaymentController extends BaseController {
 
 	/**
@@ -44,6 +44,7 @@ public class PaymentController extends BaseController {
 	 * @throws InvalidCardException - if the string does not represent a valid date
 	 *                              in the expected format
 	 */
+
 	private String getExpirationDate(String date) throws InvalidCardException {
 		String[] strs = date.split("/");
 		if (strs.length != 2) {
@@ -57,7 +58,7 @@ public class PaymentController extends BaseController {
 		try {
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
-			if (month < 1 || month > 12 || year < Calendar.getInstance().get(Calendar.YEAR) % 100 || year > 100) {
+			if (isValidDatetime(month, year)) {
 				throw new InvalidCardException();
 			}
 			expirationDate = strs[0] + strs[1];
@@ -81,6 +82,14 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
+
+	private boolean isValidDatetime(int month, int year) {
+		if (month < 1 || month > 12 || year < Calendar.getInstance().get(Calendar.YEAR) % 100 || year > 100) {
+			return false;
+		} else
+			return true;
+	}
+
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
 			String expirationDate, String securityCode) {
 		Map<String, String> result = new Hashtable<String, String>();
@@ -103,7 +112,10 @@ public class PaymentController extends BaseController {
 		return result;
 	}
 
-	public void emptyCart(){
-        SessionInformation.cartInstance.emptyCart();
-    }
+	// common coupling
+	// su sung truc tiep cac thuoc tinh static cua class SessionInformation
+	public void emptyCart() {
+		// SessionInformation.cartInstance.emptyCart();
+		Cart.getInstance().emptyCart();
+	}
 }
