@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
-import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
 import java.util.Map;

@@ -2,13 +2,10 @@ package views.screen.home;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
@@ -20,7 +17,6 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +26,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import utils.Utils;
+import views.notification.error.AlertErrorNotifier;
+import views.notification.error.PopupErrorNotifier;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
@@ -72,16 +70,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath, null);
-//        try {
-//            setupData(null);
-//            setupFunctionality();
-//        } catch (IOException ex) {
-//            LOGGER.info(ex.getMessage());
-//            PopupScreen.error("Error when loading resources.");
-//        } catch (Exception ex) {
-//            LOGGER.info(ex.getMessage());
-//            PopupScreen.error(ex.getMessage());
-//        }
     }
 
     public Label getNumMediaCartLabel(){

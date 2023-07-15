@@ -2,20 +2,15 @@ package views.screen;
 
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.logging.Logger;
 
-import controller.AuthenticationController;
 import controller.BaseController;
-import controller.PaymentController;
-import entity.invoice.Invoice;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Utils;
+import views.notification.error.AlertErrorNotifier;
+import views.notification.error.ErrorNotifier;
 import views.screen.home.HomeScreenHandler;
-import views.screen.popup.HandleFeedBackScreen;
-import views.screen.popup.PopupScreen;
 
 public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
@@ -28,12 +23,16 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 	protected HomeScreenHandler homeScreenHandler;
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
-
-	private HandleFeedBackScreen handleFeedBackScreen;
+	protected ErrorNotifier errorNotifier;
 
 	protected BaseScreenHandler(Stage stage, String screenPath,Object dto) throws IOException {
 		super(screenPath);
 		this.stage = stage;
+		errorNotifier = new AlertErrorNotifier();
+		setupDataAndFunctionality(dto);
+	}
+
+	protected void setupDataAndFunctionality(Object dto) throws IOException {
 		try {
 			setupData(dto);
 			setupFunctionality();
@@ -44,26 +43,21 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		}
 	}
 
-	private void handlexception(Exception ex) throws IOException {
+	protected void setupData(Object dto) throws Exception {
+	}
+
+	protected void setupFunctionality() throws Exception {
+	}
+
+	protected void handlexception(Exception ex) throws IOException {
 		LOGGER.info(ex.getMessage());
-		if(this.handleFeedBackScreen == null){
-			handleFeedBackScreen = new PopupScreen(stage);
-		}
-		this.handleFeedBackScreen.error("Error when loading resources.");
+		errorNotifier.error(ex.getMessage());
+
 	}
 
 	protected void handleIOException(IOException ex) throws IOException{
 		LOGGER.info(ex.getMessage());
-		if(this.handleFeedBackScreen == null){
-			handleFeedBackScreen = new PopupScreen(stage);
-		}
-		this.handleFeedBackScreen.error("Error when loading resources.");
-	}
-
-	protected  void  setupData(Object dto) throws Exception {
-	}
-
-	protected void setupFunctionality() throws Exception {
+		errorNotifier.error(ex.getMessage());
 	}
 
 	public void setPreviousScreen(BaseScreenHandler prev) {
@@ -102,7 +96,4 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		this.homeScreenHandler = HomeScreenHandler;
 	}
 
-	public void setHandleFeedBackScreen(HandleFeedBackScreen handleFeedBackScreen) {
-		this.handleFeedBackScreen = handleFeedBackScreen;
-	}
 }

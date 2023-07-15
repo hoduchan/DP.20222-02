@@ -2,6 +2,7 @@ package views.screen.popup;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -12,13 +13,15 @@ import views.screen.ViewsConfig;
 import java.io.IOException;
 
 
-public class PopupScreen extends HandleFeedBackScreen {
+public class PopupScreen extends BaseScreenHandler {
 
     @FXML
     ImageView icon;
+    @FXML
+    Label message;
 
     public PopupScreen(Stage stage) throws IOException{
-        super(stage, ViewsConfig.POPUP_PATH);
+        super(stage, ViewsConfig.POPUP_PATH, null);
     }
 
     private static PopupScreen popup(String message, String imagePath, Boolean undecorated) throws IOException{

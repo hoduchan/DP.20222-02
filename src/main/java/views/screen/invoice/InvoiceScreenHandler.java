@@ -15,7 +15,6 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.payment.PaymentScreenHandler;
-import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
 import java.sql.SQLException;
