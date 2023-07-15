@@ -8,7 +8,9 @@ import entity.order.Order;
 import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.ShippingConfigs;
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
+import api_distance_calculator.DisCalAdapter;
+import api_shipping_fee_calculator.ShippngFeeCaculator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -75,8 +77,10 @@ public class PlaceOrderController extends BaseController {
                 String.valueOf(info.get("phone")),
                 String.valueOf(info.get("province")),
                 String.valueOf(info.get("address")),
-                String.valueOf(info.get("instructions")),
-                new DistanceCalculator());
+                String.valueOf(info.get("instructions")));
+        
+        deliveryInfo.setDistanceCalculator(new DisCalAdapter());
+        deliveryInfo.setShippingFeeCalculator(new ShippngFeeCaculator());
         System.out.println(deliveryInfo.getProvince());
         return deliveryInfo;
     }
