@@ -7,12 +7,24 @@ import java.util.List;
 import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
+/**
+ * singleton: Cart can la duy nhat, do do can ap dung singleton
+ *
+ * */
 public class Cart {
-    
+    private static Cart instance;
     private List<CartItem> lstCartItem;
 
-    public Cart() {
+
+    private Cart() {
         lstCartItem = new ArrayList<>();
+    }
+
+    public static Cart getInstance(){
+        if(instance == null){
+            instance = new Cart();
+        }
+        return instance;
     }
 
     public void addCartMedia(CartItem cm){

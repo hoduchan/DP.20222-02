@@ -31,7 +31,7 @@ public class Order {
     // stamp coupling vì chỉ sử dụng 1 method cart.calSubtotal() của biến được truyền vào
     public Order(Cart cart) {
         List<OrderItem> orderItems = new ArrayList<>();
-        for (Object object : SessionInformation.cartInstance.getListMedia()) {
+        for (Object object : SessionInformation.getInstance().getCartInstance().getListMedia()) {
             CartItem cartItem = (CartItem) object;
             OrderItem orderItem = new OrderItem(cartItem.getMedia(),
                     cartItem.getQuantity(),

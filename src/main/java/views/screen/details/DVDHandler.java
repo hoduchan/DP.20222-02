@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public class DVDHandler extends MediaHandler {
+public  class DVDHandler extends MediaHandler{
     public static Logger LOGGER = Utils.getLogger(DVDHandler.class.getName());
 
     public DVDHandler(String screenPath, Media media) throws IOException {
@@ -22,4 +22,4 @@ public class DVDHandler extends MediaHandler {
         }
     }
 
-}
+}	

@@ -22,8 +22,8 @@ import java.util.regex.Pattern;
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
- * 
- *  Coincidental Cohesion vì các phương thức xử lý nhiều nhiệm vụ 
+ *
+ *  Coincidental Cohesion vì các phương thức xử lý nhiều nhiệm vụ
  *  liên quan đến việc tạo đơn hàng và xử lý thông tin người dùng
  */
 /*
@@ -41,7 +41,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public void placeOrder() throws SQLException {
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        SessionInformation.getInstance().getCartInstance().checkAvailabilityOfProduct();
     }
 
     /**
@@ -50,7 +50,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public Order createOrder() throws SQLException {
-        return new Order(SessionInformation.cartInstance);
+        return new Order(SessionInformation.getInstance().getCartInstance());
     }
 
     /**
@@ -78,7 +78,7 @@ public class PlaceOrderController extends BaseController {
                 String.valueOf(info.get("province")),
                 String.valueOf(info.get("address")),
                 String.valueOf(info.get("instructions")));
-        
+
         deliveryInfo.setDistanceCalculator(new DisCalAdapter());
         deliveryInfo.setShippingFeeCalculator(new ShippngFeeCaculator());
         System.out.println(deliveryInfo.getProvince());

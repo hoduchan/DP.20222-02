@@ -10,13 +10,51 @@ import java.time.LocalDateTime;
  */
 public class SessionInformation {
     // common coupling vì có sử dụng trực tiếp trong class AuthenticationController
-    public static User mainUser;
+    private User mainUser;
     /*
      common coupling vì có sử dụng trực tiếp trong nhiều class khác như BaseController,
       PaymentController, Order, HomeScreenHandler ..
     */
-    public static Cart cartInstance = new Cart();
+    private Cart cartInstance = Cart.getInstance();
     // common coupling vì có sử dụng trực tiếp trong class AuthenticationController
-    public static LocalDateTime expiredTime;
+    private LocalDateTime expiredTime;
+
+
+    private static  SessionInformation instance;
+
+    public static synchronized SessionInformation  getInstance(){
+        if(instance == null){
+            instance = new SessionInformation();
+
+        }
+        return instance;
+    }
+
+    private SessionInformation(){
+    }
+
+    public User getMainUser() {
+        return mainUser;
+    }
+
+    public void setMainUser(User mainUser) {
+        this.mainUser = mainUser;
+    }
+
+    public Cart getCartInstance() {
+        return Cart.getInstance();
+    }
+
+    public void setCartInstance(Cart cartInstance) {
+        this.cartInstance = cartInstance;
+    }
+
+    public LocalDateTime getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(LocalDateTime expiredTime) {
+        this.expiredTime = expiredTime;
+    }
 
 }

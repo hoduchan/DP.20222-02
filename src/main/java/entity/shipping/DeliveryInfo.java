@@ -6,7 +6,7 @@ import api_distance_calculator.InterfaceDisCal;
 import api_shipping_fee_calculator.InterfaceShipCal;
 import java.util.List;
 
-// DIP vì phụ thuộc vào lớp DistanceCalculator - 1 lớp cấp thấp, nên sử dụng giao diện DistanceCalculatorInterface 
+// DIP vì phụ thuộc vào lớp DistanceCalculator - 1 lớp cấp thấp, nên sử dụng giao diện DistanceCalculatorInterface
 public class DeliveryInfo {
 
     protected String name;
@@ -26,11 +26,7 @@ public class DeliveryInfo {
         this.shippingInstructions = shippingInstructions;
         //this.distanceCalculator = distanceCalculator;
     }
-    /*
-    * OCP
-    * vì khi thay đổi các tính phí, cách tính khoảng cách sẽ phải sửa đổi
-    */
-    //stampling coupling biến order không sử dụng
+
     public int calculateShippingFee(Order order) {
         int distance = disCal.calculate(address, province);
         List orderMediaList = order.getOrderMediaList();
