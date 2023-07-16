@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public  class BookHandler extends MediaHandler{
+public  class BookHandler extends MediaDetailsHandler {
     public static Logger LOGGER = Utils.getLogger(BookHandler.class.getName());
 
     public BookHandler(String screenPath, Media media) throws IOException {

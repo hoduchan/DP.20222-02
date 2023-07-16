@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public  class CDHandler extends MediaHandler{
+public  class CDHandler extends MediaDetailsHandler {
     public static Logger LOGGER = Utils.getLogger(CDHandler.class.getName());
 
     public CDHandler(String screenPath, Media media) throws IOException {

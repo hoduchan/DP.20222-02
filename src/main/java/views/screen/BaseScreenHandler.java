@@ -30,6 +30,9 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 	private BaseController bController;
 	protected ErrorNotifier errorNotifier;
 
+	protected BaseScreenHandler(Stage stage, String screenPath) throws IOException {
+		this(stage, screenPath, null);
+	}
 	protected BaseScreenHandler(Stage stage, String screenPath,Object dto) throws IOException {
 		super(screenPath);
 		this.stage = stage;

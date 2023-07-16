@@ -23,7 +23,7 @@ public class DetailsScreenHandler extends BaseScreenHandler {
     @FXML
     protected Button addToCartBtn;
 
-    MediaHandler mediaHandler;
+    MediaDetailsHandler mediaHandler;
 
     public DetailsScreenHandler(Stage stage, String screenPath, Media media) throws IOException {
         super(stage, screenPath, media);

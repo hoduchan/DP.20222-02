@@ -20,7 +20,7 @@ public class IntroScreenHandler extends BaseScreenHandler {
     ImageView logo;
 
     public IntroScreenHandler(Stage stage, String screenPath) throws IOException {
-        super(stage, screenPath, null);
+        super(stage, screenPath);
 //        try {
 //            setupData(null);
 //            setupFunctionality();

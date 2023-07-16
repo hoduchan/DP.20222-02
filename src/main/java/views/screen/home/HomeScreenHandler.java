@@ -26,8 +26,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import utils.Utils;
-import views.notification.error.AlertErrorNotifier;
-import views.notification.error.PopupErrorNotifier;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
@@ -70,7 +68,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     private AuthenticationController authenticationController;
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
-        super(stage, screenPath, null);
+        super(stage, screenPath);
     }
 
     public Label getNumMediaCartLabel(){
@@ -202,11 +200,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     public void update(Observable observable) {
         if (observable instanceof MediaHandler) {
             MediaHandler mediaHandler = (MediaHandler) observable;
-            MediaEvent mediaEvent =  mediaHandler.getMediaEvent();
+            MediaEventEnum mediaEvent =  mediaHandler.getMediaEvent();
             LOGGER.info("mediaEvent "+ mediaEvent);
-            if(mediaEvent == MediaEvent.ADD_TO_CART){
+            if(mediaEvent == MediaEventEnum.ADD_TO_CART){
                 update(mediaHandler);
-            }else  if(mediaEvent == MediaEvent.VIEW_DETAILS){
+            }else  if(mediaEvent == MediaEventEnum.VIEW_DETAILS){
                 redirectDetailsScreen(mediaHandler.getMedia());
             }
         };

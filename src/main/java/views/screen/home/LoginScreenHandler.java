@@ -45,7 +45,7 @@ public class LoginScreenHandler extends BaseScreenHandler{
     private PasswordField password;
 
     public LoginScreenHandler(Stage stage, String screenPath) throws IOException{
-        super(stage, screenPath, null);
+        super(stage, screenPath);
 
     }
 

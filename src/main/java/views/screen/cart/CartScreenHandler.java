@@ -54,7 +54,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 	private Button btnPlaceOrder;
 
 	public CartScreenHandler(Stage stage, String screenPath) throws IOException {
-		super(stage, screenPath, null);
+		super(stage, screenPath);
 //		try {
 //			setupFunctionality();
 //		} catch (IOException ex) {

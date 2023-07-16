@@ -5,10 +5,10 @@ import views.screen.FXMLScreenHandler;
 
 import java.io.IOException;
 
-public abstract class MediaHandler extends FXMLScreenHandler {
+public abstract class MediaDetailsHandler extends FXMLScreenHandler {
     Media media;
 
-    public MediaHandler(String screenPath, Media media) throws IOException {
+    public MediaDetailsHandler(String screenPath, Media media) throws IOException {
         super(screenPath);
         this.media = media;
     }
