@@ -49,6 +49,9 @@ public class ResultScreenHandler extends BaseScreenHandler {
 	}
 
 	@FXML
+	private Label errorText;
+	
+	@FXML
 	private Label pageTitle;
 
 	@FXML
