@@ -6,7 +6,6 @@ import api_distance_calculator.InterfaceDisCal;
 import api_shipping_fee_calculator.InterfaceShipCal;
 import java.util.List;
 
-// DIP vì phụ thuộc vào lớp DistanceCalculator - 1 lớp cấp thấp, nên sử dụng giao diện DistanceCalculatorInterface
 public class DeliveryInfo {
 
     protected String name;
@@ -25,6 +24,9 @@ public class DeliveryInfo {
         this.address = address;
         this.shippingInstructions = shippingInstructions;
         //this.distanceCalculator = distanceCalculator;
+    }
+
+    public DeliveryInfo() {
     }
 
     public int calculateShippingFee(Order order) {
