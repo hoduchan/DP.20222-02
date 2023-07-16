@@ -15,7 +15,6 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.payment.PaymentScreenHandler;
-import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -58,19 +57,19 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	private Invoice invoice;
 
 	public InvoiceScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
-		super(stage, screenPath);
-		try {
-			setupData(invoice);
-			setupFunctionality();
-		} catch (IOException ex) {
-			LOGGER.info(ex.getMessage());
-			PopupScreen.error("Error when loading resources.");
-		} catch (Exception ex) {
-			LOGGER.info(ex.getMessage());
-			PopupScreen.error(ex.getMessage());
-		}
+		super(stage, screenPath, invoice);
+//		try {
+//			setupData(invoice);
+//			setupFunctionality();
+//		} catch (IOException ex) {
+//			LOGGER.info(ex.getMessage());
+//			PopupScreen.error("Error when loading resources.");
+//		} catch (Exception ex) {
+//			LOGGER.info(ex.getMessage());
+//			PopupScreen.error(ex.getMessage());
+//		}
 	}
-
+	@Override
 	protected void setupData(Object dto) throws Exception {
 		this.invoice = (Invoice) dto;
 		Order order = invoice.getOrder();
@@ -98,9 +97,9 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		});
 	}
 
-	protected void setupFunctionality() throws Exception {
-		return;
-	}
+//	protected void setupFunctionality() throws Exception {
+//		return;
+//	}
 
 	@FXML
 	void confirmInvoice(MouseEvent event) throws IOException {

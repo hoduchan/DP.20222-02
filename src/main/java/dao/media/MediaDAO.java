@@ -33,12 +33,13 @@ public class MediaDAO {
     }
 
     public Media getMediaById(int id) throws SQLException {
-        String sql = "SELECT * FROM Media ;";
         Statement stm = AIMSDB.getConnection().createStatement();
+        String sql = "SELECT * FROM Media "+
+                "where id = " + id + ";";
         ResultSet res = stm.executeQuery(sql);
-
+        Media media = null;
         if (res.next()) {
-            return new Media(
+            media =  new Media(
                     res.getInt("id"),
                     res.getString("title"),
                     res.getInt("quantity"),
@@ -47,7 +48,7 @@ public class MediaDAO {
                     res.getInt("price"),
                     res.getString("type"));
         }
-        return null;
+        return media;
     }
 
 

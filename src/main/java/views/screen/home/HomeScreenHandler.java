@@ -2,13 +2,10 @@ package views.screen.home;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
@@ -20,7 +17,6 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,9 +26,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import utils.Utils;
+import views.notification.error.AlertErrorNotifier;
+import views.notification.error.PopupErrorNotifier;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
+import views.screen.details.DetailsScreenHandler;
 import views.screen.popup.PopupScreen;
 
 
@@ -71,17 +70,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     private AuthenticationController authenticationController;
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
-        super(stage, screenPath);
-        try {
-            setupData(null);
-            setupFunctionality();
-        } catch (IOException ex) {
-            LOGGER.info(ex.getMessage());
-            PopupScreen.error("Error when loading resources.");
-        } catch (Exception ex) {
-            LOGGER.info(ex.getMessage());
-            PopupScreen.error(ex.getMessage());
-        }
+        super(stage, screenPath, null);
     }
 
     public Label getNumMediaCartLabel(){
@@ -92,6 +81,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         return (HomeController) super.getBController();
     }
 
+    @Override
     protected void setupData(Object dto) throws Exception {
         setBController(new HomeController());
         this.authenticationController = new AuthenticationController();
@@ -100,16 +90,16 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             this.homeItems = new ArrayList<>();
             for (Object object : medium) {
                 Media media = (Media)object;
-                MediaHandler m = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media);
-                m.attach(this);
-                this.homeItems.add(m);
+                MediaHandler mediaHandler = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media);
+                mediaHandler.attach(this);
+                this.homeItems.add(mediaHandler);
             }
         } catch (SQLException | IOException e){
             LOGGER.info("Errors occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
+    @Override
     protected void setupFunctionality() throws Exception {
 
         aimsImage.setOnMouseClicked(e -> {
@@ -210,7 +200,16 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     @Override
     public void update(Observable observable) {
-        if (observable instanceof MediaHandler) update((MediaHandler) observable);
+        if (observable instanceof MediaHandler) {
+            MediaHandler mediaHandler = (MediaHandler) observable;
+            MediaEvent mediaEvent =  mediaHandler.getMediaEvent();
+            LOGGER.info("mediaEvent "+ mediaEvent);
+            if(mediaEvent == MediaEvent.ADD_TO_CART){
+                update(mediaHandler);
+            }else  if(mediaEvent == MediaEvent.VIEW_DETAILS){
+                redirectDetailsScreen(mediaHandler.getMedia());
+            }
+        };
     }
 
     private void update(MediaHandler mediaHandler) {
@@ -256,6 +255,22 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             loginScreen.setHomeScreenHandler(this);
             loginScreen.setBController(this.authenticationController);
             loginScreen.show();
+        } catch (Exception ex) {
+            try {
+                PopupScreen.error("Cant trigger Login");
+            } catch (Exception ex1) {
+                LOGGER.severe("Cannot login");
+                ex.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    void redirectDetailsScreen( Media media) {
+        try {
+        	LOGGER.info("s"+media.getTitle());
+            DetailsScreenHandler detailsScreen = new DetailsScreenHandler(this.stage,  ViewsConfig.INTRO_SCREEN_PATH, media);
+            detailsScreen.setHomeScreenHandler(this);
+//            detailsScreen.show();
         } catch (Exception ex) {
             try {
                 PopupScreen.error("Cant trigger Login");

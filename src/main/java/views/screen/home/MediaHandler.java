@@ -20,9 +20,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import utils.Utils;
+import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
+import views.screen.details.DetailsScreenHandler;
 import views.screen.popup.PopupScreen;
 
 public class MediaHandler extends FXMLScreenHandler implements Observable {
@@ -45,15 +48,25 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     @FXML
     protected Button addToCartBtn;
 
+    @FXML
+    protected Button viewDetailsBtn;
+
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
     private List<Observer> observerList;
+    private MediaEvent mediaEvent;
 
     public MediaHandler(String screenPath, Media media) throws SQLException, IOException{
         super(screenPath);
         this.media = media;
+//        LOGGER.info(media.getClass().getName());
         this.observerList = new ArrayList<>();
         addToCartBtn.setOnMouseClicked(event -> {
+            mediaEvent = MediaEvent.ADD_TO_CART;
+            notifyObservers();
+        });
+        viewDetailsBtn.setOnMouseClicked(event ->{
+            mediaEvent = MediaEvent.VIEW_DETAILS;
             notifyObservers();
         });
         setMediaInfo();
@@ -80,7 +93,6 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
         spinnerChangeNumber.setValueFactory(
             new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
         );
-
         setImage(mediaImage, media.getImageURL());
     }
 
@@ -97,5 +109,8 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     @Override
     public void notifyObservers() {
         observerList.forEach(observer -> observer.update(this));
+    }
+    public MediaEvent getMediaEvent() {
+        return mediaEvent;
     }
 }
