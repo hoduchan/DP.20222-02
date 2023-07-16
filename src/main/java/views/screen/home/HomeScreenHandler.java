@@ -31,6 +31,7 @@ import views.notification.error.PopupErrorNotifier;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
+import views.screen.details.DetailsScreenHandler;
 import views.screen.popup.PopupScreen;
 
 
@@ -199,7 +200,16 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     @Override
     public void update(Observable observable) {
-        if (observable instanceof MediaHandler) update((MediaHandler) observable);
+        if (observable instanceof MediaHandler) {
+            MediaHandler mediaHandler = (MediaHandler) observable;
+            MediaEvent mediaEvent =  mediaHandler.getMediaEvent();
+            LOGGER.info("mediaEvent "+ mediaEvent);
+            if(mediaEvent == MediaEvent.ADD_TO_CART){
+                update(mediaHandler);
+            }else  if(mediaEvent == MediaEvent.VIEW_DETAILS){
+                redirectDetailsScreen(mediaHandler.getMedia());
+            }
+        };
     }
 
     private void update(MediaHandler mediaHandler) {
@@ -245,6 +255,22 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             loginScreen.setHomeScreenHandler(this);
             loginScreen.setBController(this.authenticationController);
             loginScreen.show();
+        } catch (Exception ex) {
+            try {
+                PopupScreen.error("Cant trigger Login");
+            } catch (Exception ex1) {
+                LOGGER.severe("Cannot login");
+                ex.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    void redirectDetailsScreen( Media media) {
+        try {
+        	LOGGER.info("s"+media.getTitle());
+            DetailsScreenHandler detailsScreen = new DetailsScreenHandler(this.stage,  ViewsConfig.INTRO_SCREEN_PATH, media);
+            detailsScreen.setHomeScreenHandler(this);
+//            detailsScreen.show();
         } catch (Exception ex) {
             try {
                 PopupScreen.error("Cant trigger Login");
