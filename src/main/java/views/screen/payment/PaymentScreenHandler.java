@@ -15,13 +15,16 @@ import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
-import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
+
+/**
+ * 
+ */
 
 public class PaymentScreenHandler extends BaseScreenHandler {
 

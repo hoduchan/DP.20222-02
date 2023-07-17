@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import common.exception.MediaNotAvailableException;
 import common.interfaces.Observable;
 import common.interfaces.Observer;
-import entity.cart.Cart;
-import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +20,6 @@ import javafx.scene.image.ImageView;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
-import views.screen.popup.PopupScreen;
 
 public class MediaHandler extends FXMLScreenHandler implements Observable {
 
@@ -45,15 +41,25 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     @FXML
     protected Button addToCartBtn;
 
+    @FXML
+    protected Button viewDetailsBtn;
+
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
     private List<Observer> observerList;
+    private MediaEventEnum mediaEvent;
 
     public MediaHandler(String screenPath, Media media) throws SQLException, IOException{
         super(screenPath);
         this.media = media;
+//        LOGGER.info(media.getClass().getName());
         this.observerList = new ArrayList<>();
         addToCartBtn.setOnMouseClicked(event -> {
+            mediaEvent = MediaEventEnum.ADD_TO_CART;
+            notifyObservers();
+        });
+        viewDetailsBtn.setOnMouseClicked(event ->{
+            mediaEvent = MediaEventEnum.VIEW_DETAILS;
             notifyObservers();
         });
         setMediaInfo();
@@ -80,7 +86,6 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
         spinnerChangeNumber.setValueFactory(
             new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
         );
-
         setImage(mediaImage, media.getImageURL());
     }
 
@@ -97,5 +102,8 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     @Override
     public void notifyObservers() {
         observerList.forEach(observer -> observer.update(this));
+    }
+    public MediaEventEnum getMediaEvent() {
+        return mediaEvent;
     }
 }

@@ -1,14 +1,13 @@
 package controller;
 
 import common.exception.InvalidDeliveryInfoException;
-import entity.cart.Cart;
-import entity.cart.CartItem;
 import entity.invoice.Invoice;
 import entity.order.Order;
-import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.ShippingConfigs;
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
+import api_distance_calculator.DisCalAdapter;
+import api_shipping_fee_calculator.ShippngFeeCaculator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +19,13 @@ import java.util.regex.Pattern;
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
+ *
+ *  Coincidental Cohesion vì các phương thức xử lý nhiều nhiệm vụ
+ *  liên quan đến việc tạo đơn hàng và xử lý thông tin người dùng
  */
+/*
+*  SRP vì ngoài các hàm có nhiệm vụ tạo đơn hàng, hóa đơn còn chứa thêm các hàm làm nhiệm vụ validate
+* */
 public class PlaceOrderController extends BaseController {
 
     /**
@@ -33,7 +38,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public void placeOrder() throws SQLException {
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        SessionInformation.getInstance().getCartInstance().checkAvailabilityOfProduct();
     }
 
     /**
@@ -42,7 +47,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public Order createOrder() throws SQLException {
-        return new Order(SessionInformation.cartInstance);
+        return new Order(SessionInformation.getInstance().getCartInstance());
     }
 
     /**
@@ -69,8 +74,10 @@ public class PlaceOrderController extends BaseController {
                 String.valueOf(info.get("phone")),
                 String.valueOf(info.get("province")),
                 String.valueOf(info.get("address")),
-                String.valueOf(info.get("instructions")),
-                new DistanceCalculator());
+                String.valueOf(info.get("instructions")));
+
+        deliveryInfo.setDistanceCalculator(new DisCalAdapter());
+        deliveryInfo.setShippingFeeCalculator(new ShippngFeeCaculator());
         System.out.println(deliveryInfo.getProvince());
         return deliveryInfo;
     }

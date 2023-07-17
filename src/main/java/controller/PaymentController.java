@@ -24,6 +24,9 @@ import utils.TimeUtil;
  * 
  * @author hieud
  *
+ * 
+ *  Procedural cohesion vì payOrder cần dùng  getExpirationDate để lấy ngày hết hạn thẻ tại thời điểm thanh toán
+ *  emptyCart -> không liên quan -> Coincidental cohesion
  */
 public class PaymentController extends BaseController {
 
@@ -49,12 +52,20 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
+
+	/*
+	 * OCP
+	 * nếu thêm phương thức thay toán mới ví dụ thẻ nội địa (domestic card)
+	 *  không phải dùng CreditCard nữa phải sửa đổi lại code
+	 */
+
 	// Data Coupling: Truyen vao cac tham so va phuc vu luong thuc thi
 	public Map<String, String> payOrder(int amount, String contents, PaymentCard paymentCard) {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
 			this.card = paymentCard;
+			this.interbank = new InterbankSubsystem();
 			PaymentTransaction transaction = interbank.payOrder(paymentCard, amount, contents);
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");
 			result.put("MESSAGE", "You have successfully paid the order!");

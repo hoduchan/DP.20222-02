@@ -12,6 +12,9 @@ import java.util.Map;
 
 /**
  * @author
+ * 
+ * Procedural cohesion vì các method thực hiện theo trình tự nhật định
+ * // Coincidental cohesion vì các method getToday() chức năng không liên quan đến
  */
 public class InterbankPayloadConverter {
 
@@ -68,6 +71,7 @@ public class InterbankPayloadConverter {
                 Integer.parseInt((String) transaction.get("amount")),
                 (String) transaction.get("createdAt"));
 
+        //vi phạm OCP vì khi có thêm trường hợp lỗi mới thì cần sửa đổi các case        
         switch (trans.getErrorCode()) {
             case "00":
                 break;

@@ -3,8 +3,12 @@ package entity.shipping;
 /**
  * @author
  */
-public class ShippingConfigs {
 
+//DIP vì các thông tin tỉnh thành không được trừu tượng hóa,
+// lớp phụ thuộc vào các giá trị cụ thể,
+// cần chuyển các thông tin tỉnh thành vào 1 lớp khác để lớp ShippingConfigs phụ thuộc vào
+public class ShippingConfigs {
+    // common coupling
     public static String[] PROVINCES = {
             "Bắc Giang", 	"Bắc Kạn", 			"Cao Bằng", 	"Hà Giang", 	"Lạng Sơn", 	"Phú Thọ",
             "Quảng Ninh", 	"Thái Nguyên", 		"Tuyên Quang", 	"Yên Bái", 		"Điện Biên", 	"Hòa Bình",

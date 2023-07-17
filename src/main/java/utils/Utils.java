@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 /**
  * @author nguyenlm Contains helper functions
  */
+/*
+* SRP vì chứa 2 nhiệm vụ Format ngày tháng và Logger 
+* */
 public class Utils {
 
 	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

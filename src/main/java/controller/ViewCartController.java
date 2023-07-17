@@ -7,15 +7,17 @@ import entity.cart.Cart;
 /**
  * This class controls the flow of events when users view the Cart
  * @author nguyenlm
+ *
+ *
  */
 public class ViewCartController extends BaseController{
-    
+    private SessionInformation sessionInformation = SessionInformation.getInstance();
     /**
      * This method checks the available products in Cart
      * @throws SQLException
      */
     public void checkAvailabilityOfProduct() throws SQLException{
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        sessionInformation.getCartInstance().checkAvailabilityOfProduct();
     }
 
     /**
@@ -23,7 +25,7 @@ public class ViewCartController extends BaseController{
      * @return subtotal
      */
     public int getCartSubtotal(){
-        int subtotal = SessionInformation.cartInstance.calSubtotal();
+        int subtotal = sessionInformation.getCartInstance().calSubtotal();
         return subtotal;
     }
 
