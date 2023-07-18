@@ -1,36 +1,36 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+/sourcecode/target/
+/sourcecode/!.mvn/wrapper/maven-wrapper.jar
+/sourcecode/**/src/main/**/target/
+/sourcecode/**/src/test/**/target/
 
 ### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+/sourcecode/.apt_generated
+/sourcecode/.classpath
+/sourcecode/.factorypath
+/sourcecode/.project
+/sourcecode/.settings
+/sourcecode/.springBeans
+/sourcecode/.sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
-.metadata
-*.iws
-*.iml
-*.ipr
+/sourcecode/.idea
+/sourcecode/.metadata
+/sourcecode/*.iws
+/sourcecode/*.iml
+/sourcecode/*.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+/sourcecode/nbproject/private/
+/sourcecode/nbbuild/
+/sourcecode/dist/
+/sourcecode/nbdist/
+/sourcecode/.nb-gradle/
+/sourcecode/build/
+/sourcecode/**/src/main/**/build/
+/sourcecode/**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+/sourcecode/.vscode/
 
-.DS_Store
+### macOS ###
+/sourcecode/.DS_Store

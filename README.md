@@ -1,46 +1,29 @@
 #  An Internet Media Store
 <p align="center">
-  <img src="src/main/resources/assets/images/aims_cover_image.png" />
+  <img src="sourcecode/src/main/resources/assets/images/aims_cover_image.png" />
 </p>
 
-## Getting Started
+## Thành viên - Group 2
 
-Welcome to the AIMS project. Here is a guideline to help you get started.
+1. Hồ Đức Hân - 20194040
+2. Hà Mạnh Hùng - 20194102
+3. Trần Minh Hoàng - 20194061
+4. Trần Thành Long - 201066
 
-## Folder Structure
+## Phân công công việc
+### 1. Hồ Đức Hân  
+   - Requirement 5: Thêm phương thức thanh toán mới Thẻ nội địa (Domestic Card)
+   - Hoàn thiện báo cáo.
+### 2. Hà Mạnh Hùng 
+   - Requirement 1: Thêm mặt hàng Media mới AudioBook
+   - Requirement 7: Cập nhật lại chức năng hủy đơn hàng
 
-The workspace contains the following folders, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-- `test`: the folder for testing purpose
-
-## Dependency Management
-### Working with Eclipse
-Import the root directory of this repository after cloning under `Eclipse` -> `Open Projects from File System...` or by using EGit.
-
-### SQLite
-Import `sqlite-jdbc-3.7.2.jar` in `lib` under `Eclipse` -> `Project` -> `Properties` -> `Java Build Path` -> `Classpath` -> `Add JARs...`.
-
-
-### JUnit
-Import `JUnit5` library under `Eclipse` -> `Project` -> `Properties` -> `Java Build Path` -> `Modulepath` -> `Add Library...` -> `JUnit` -> `Next`.
-
-### JavaFX
-**Note:** At first, please try to run the project once, and then follow these steps.
-1. Create a new `User Library` under `Eclipse` -> `Window` -> `Preferences` -> `Java` -> `Build Path` -> `User Libraries` -> `New`
-2. Name it anything you want, e.g., `JavaFX15`, and include the ***jars*** under either the `lib/linux/javafx-sdk-15` directory for Linux distro or the `lib/win/javafx-sdk-15` directory for Windows in the project.
-3. Include the library, e.g., `JavaFX15`, into the classpath.
-
-### Add VM arguments
-Click on `Run` -> `Run Configurations...`  -> `Java Application`, create a new launch configuration for your project and add these VM arguments:
-- For Linux distro: 
-> `--module-path lib/linux/javafx-sdk-15 --add-modules javafx.controls,javafx.fxml`
-- For Windows:
-> `--module-path lib/win/javafx-sdk-15 --add-modules javafx.controls,javafx.fxml`
-
-## Author
-- nguyenlm - Software Engeneering Student - k61
-- manhvd   - Software Engeneering Student - k61
-- hieudm   - ICT - k61
-- thanhld  - ICT - k62
+### 3. Trần Minh Hoàng
+   - Tìm kiếm vi phạm Coupling - Cohesion
+   - Requirement 2: Thêm màn hình Xem chi tiết sản phẩm
+   - Requirement 3: Thay đổi yêu cầu khi load giao diện
+### 4. Trần Thành Long
+   - Requirement 4: Thay đổi cách tính khoảng cách, sử dụng thư viện mới
+   - Requirement 6: Thay đổi công thức tính phí vận chuyển
+## Video Present
+Link:
