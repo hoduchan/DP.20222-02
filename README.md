@@ -12,6 +12,7 @@
 
 ## Phân công công việc
 ### 1. Hồ Đức Hân  
+   - Tìm kiếm vi phạm Coupling - Cohesion 
    - Requirement 5: Thêm phương thức thanh toán mới Thẻ nội địa (Domestic Card)
    - Hoàn thiện báo cáo.
 ### 2. Hà Mạnh Hùng 
